@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malnad College of Engineering</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .college-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            max-height: 80px;
+            margin-right: 20px;
+        }
+
+        .college-details h1 {
+            margin: 0;
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #001038;
+        }
+
+        .college-details p {
+            margin: 0;
+            font-size: 1 em;
+            color: #555;
+            font-weight: lighter;
+        }
+
+        .accreditation-logos {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .accreditation-logos img {
+            max-height: 50px;
+            margin: 0 10px;
+        }
+
+        nav {
+            background-color: #C8102E;
+            padding: 15px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .content h2 {
+            color: #C8102E;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            background-color: #222;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .footer .footer-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer .footer-info .contact-info,
+        .footer .footer-info .useful-links,
+        .footer .footer-info .working-hours {
+            flex: 1;
+            margin: 20px;
+        }
+
+        .footer .footer-info h4 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer .footer-info h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: #C8102E;
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer .footer-info p,
+        .footer .footer-info a {
+            font-size: 0.9em;
+            color: #ccc;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+        .footer .footer-info .social-links a {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+
+        .footer .logo img {
+            max-height: 80px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        .footer .footer-info .social-links img {
+            max-height: 30px;
+            width: auto;
+            vertical-align: middle;
+        }
+
+        .footer-bottom img {
+            max-height: 50px;
+            width: auto;
+            margin-top: 10px;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .image-container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+        
+        .image-responsive {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Useful Links Animation */
+        .useful-links a {
+            display: block;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .useful-links a:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .useful-links a:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .useful-links a:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        .useful-links a:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+        .useful-links a:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                padding: 10px 0;
+            }
+            nav ul li {
+                margin: 0 20px;
+            }
+            nav ul li a {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            nav ul li a {
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="college-info">
+            <img src="Photo\MCE_logo.png" alt="College Logo" class="logo">
+            <div class="college-details">
+                <h1>Training and Placement Cell</h1>
+                <p>Malnad College of Engineering, Hassan</p>
+            </div>
+        </div>
+        <div class="accreditation-logos">
+            <img src="Photo\naac-logo.jpg" alt="NAAC Accredited">
+            <img src="Photo\aria-logo.png" alt="ARIA Accredited">
+            <img src="Photo\mhrd-logo.jpg" alt="MHRD Accredited">
+            <img src="Photo\iic-logo.jpg" alt="Institution's Innovation Council">
+            <img src="Photo\nirf-logo.png" alt="NIRF Accredited">
+            <img src="Photo\gs-gauge.png" alt="Gold Rated">
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Alumni</a></li>
+            <li><a href="#">Examination</a></li>
+            <li><a href="#">Training and Placements</a></li>
+            <li><a href="Login.html">Login/Register</a></li>
+        </ul>
+    </nav>
+    <div class="image-container">
+        <img src="Photo\College-icon.jpg" alt="MOU Image" class="image-responsive">
+    
+    </div>
+    
+    
+    <div class="content">
+        <h2>Welcome to the Training and Placements Cell</h2>
+        <p>This is the Training and Placements Cell of Malnad College of Engineering. We aim to provide students with the best opportunities to secure their future by connecting them with top companies and organizations.</p>
+    </div>
+    <footer class="footer">
+        <div class="footer-info">
+            <div class="contact-info">
+                <div class="logo">
+                    <img src="Photo\MCE_logo.png" alt="College Logo">
+                </div>
+                <p>No 21, Salagame Rd, Rangoli Halla, Hassan, Karnataka 573202</p>
+                <p>08172-245317</p>
+                <p><a href="mailto:office@mcehassan.ac.in">office@mcehassan.ac.in</a></p>
+                <div class="social-links">
+                    <a href="#"><img src="Photo\facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="Photo\twitter-icon.png" alt="Twitter"></a>
+                    <a href="#"><img src="Photo\instagram-icon.jpeg" alt="Instagram"></a>
+                    <a href="#"><img src="Photo\whatsapp-icon.jpg" alt="WhatsApp"></a>
+                    <a href="#"><img src="Photo\youtube-icon.png" alt="YouTube"></a>
+                    <a href="#"><img src="Photo\linkedin-icon.png" alt="LinkedIn"></a>
+                </div>
+            </div>
+            <div class="useful-links">
+                <h4>Useful Links</h4>
+                <a href="#">About Us</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Gallery</a>
+                <a href="#">Staff Mail Login</a>
+            </div>
+            <div class="working-hours">
+                <h4>Working Hours</h4>
+                <p>Mon - Fri : 09.30 am - 05.30 pm</p>
+                <p>Saturday : 09.30 am - 01.30 pm</p>
+                <p>Sunday : Closed</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Malnad College of Engineering. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
