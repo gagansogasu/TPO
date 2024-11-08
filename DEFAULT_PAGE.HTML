@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malnad College of Engineering</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s; 
+        }
+
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s; 
+        }
+
+        .college-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            max-height: 80px;
+            margin-right: 20px;
+        }
+
+        .college-details h1 {
+            margin: 0;
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #001038;
+        }
+
+        .college-details p {
+            margin: 0;
+            font-size: 1em;
+            color: #555;
+            font-weight: lighter;
+        }
+
+        .accreditation-logos {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .accreditation-logos img {
+            max-height: 50px;
+            margin: 0 10px;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: calc(100vh - 100px);
+            background-color: #C8102E;
+            color: #fff;
+            position: fixed;
+            padding: 20px;
+            top: 100px;
+            transition: background-color 0.3s; 
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #34495e;
+            padding-left: 10px;
+            transition: 0.3s;
+        }
+
+        .dark-mode-toggle {
+            margin-top: 30px;
+            
+        }
+
+        .dark-mode-toggle label {
+            margin-right: 10px;
+        }
+
+        .content-wrapper {
+            margin-left: 270px;
+            padding: 20px 40px;
+            margin-top: 140px;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .text-content {
+            max-width: 60%;
+        }
+
+        .page-title {
+            margin-bottom: 30px;
+        }
+
+        .page-title h1 {
+            font-size: 32px;
+            margin: 0;
+            color: #333;
+        }
+
+        .page-title p {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin: 0;
+        }
+
+        section h2 {
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+
+        
+        .student-photo {
+            max-width: 35%;
+            margin-left: 40px;
+        }
+
+        .student-photo img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode {
+            background-color: #121212; 
+            color: #e0e0e0; 
+        }
+
+        header.dark-mode {
+            background-color: #1e1e1e;
+            color: #e0e0e0; 
+        }
+
+        .sidebar.dark-mode {
+            background-color: #333; 
+            color: #e0e0e0; 
+        }
+
+        .sidebar.dark-mode ul li a {
+            color: #e0e0e0; 
+        }
+
+        .sidebar.dark-mode ul li a:hover {
+            background-color: #444; 
+        }
+
+        .content-wrapper.dark-mode {
+            background-color: #1e1e1e; 
+            color: #e0e0e0;
+        }
+
+        h1.dark-mode {
+            color: #1a77e0; 
+        }
+
+        h2.dark-mode, h3.dark-mode {
+            color: #fff;
+        }
+
+        p.dark-mode {
+            color: #cccccc; 
+        }
+
+        button.dark-mode {
+            background-color: #C8102E;
+            color: #fff; 
+        }
+
+        button.dark-mode:hover {
+            background-color: #732d91; 
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                padding: 10px 0;
+            }
+            nav ul li {
+                margin: 0 20px;
+            }
+            nav ul li a {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            nav ul li a {
+                font-size: 0.85em;
+            }
+
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .student-photo {
+                max-width: 100%;
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="college-info">
+            <img src="Photo\MCE_logo.png" alt="College Logo" class="logo">
+            <div class="college-details">
+                <h1>Training and Placement Cell</h1>
+                <p>Malnad College of Engineering, Hassan</p>
+            </div>
+        </div>
+        <div class="accreditation-logos">
+            <img src="Photo\naac-logo.jpg" alt="NAAC Accredited">
+            <img src="Photo\aria-logo.png" alt="ARIA Accredited">
+            <img src="Photo\mhrd-logo.jpg" alt="MHRD Accredited">
+            <img src="Photo\iic-logo.jpg" alt="Institution's Innovation Council">
+            <img src="Photo\nirf-logo.png" alt="NIRF Accredited">
+            <img src="Photo\gs-gauge.png" alt="Gold Rated">
+        </div>
+    </header>
+    
+    <div class="sidebar">
+        <h2>MENU</h2>
+        <ul>
+            <li><a href="h.html">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="Create_profile.html">Create Profile</a></li>
+            <li><a href="#">Job Listings</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="dark-mode-toggle">
+            <label for="dark-mode">Dark Mode</label>
+            <input type="checkbox" id="dark-mode">
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="text-content">
+            <div class="page-title">
+                <h1>Welcome to Placement Portal</h1>
+                <p>Here you get all the details about upcoming companies visiting our college and their package details.</p>
+            </div>
+        </div>
+
+        <div class="student-photo">
+            <img src="student_photo.png" alt="Student Photo">
+            <p>Student Name</p>
+        </div>
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('dark-mode');
+        const body = document.body;
+    
+        darkModeToggle.addEventListener('change', function () {
+            body.classList.toggle('dark-mode');
+            document.querySelector('header').classList.toggle('dark-mode');
+            document.querySelector('.sidebar').classList.toggle('dark-mode');
+            document.querySelector('.content-wrapper').classList.toggle('dark-mode');
+    
+            const companyCards = document.querySelectorAll('.company-card');
+            companyCards.forEach(card => card.classList.toggle('dark-mode'));
+    
+            const headings = document.querySelectorAll('h1, h2, h3');
+            headings.forEach(heading => heading.classList.toggle('dark-mode'));
+    
+            const paragraphs = document.querySelectorAll('p');
+            paragraphs.forEach(paragraph => paragraph.classList.toggle('dark-mode'));
+    
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => button.classList.toggle('dark-mode'));
+        });
+    </script>
+</body>
+</html>
