@@ -1,0 +1,607 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training and Placement Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .college-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            max-height: 80px;
+            margin-right: 20px;
+        }
+
+        .college-details h1 {
+            margin: 0;
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #001038;
+        }
+
+        .college-details p {
+            margin: 0;
+            font-size: 1em;
+            color: #555;
+            font-weight: lighter;
+        }
+
+        .accreditation-logos {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .accreditation-logos img {
+            max-height: 50px;
+            margin: 0 10px;
+        }
+
+        nav {
+            background-color: #C8102E;
+            padding: 15px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .content h2 {
+            color: #C8102E;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab.active {
+            background-color: #C8102E;
+            color: white;
+            border-color: #C8102E;
+        }
+
+        .form-container {
+            display: none;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: rotateY(90deg);
+            transform-style: preserve-3d;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .form-container.active {
+            display: block;
+            opacity: 1;
+            transform: rotateY(0);
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+             /* Space between buttons */
+        }
+
+        .signup-button {
+            padding: 10px 20px; /* Adjust padding to match the Login button */
+            background-color: #f4f4f4;
+            margin-top: 20px;
+            color: rgb(0, 0, 0);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            flex-grow: 1; /* Ensure the button expands to fill available space */
+        }
+
+        .signup-button:hover {
+            background-color: #a00d25;
+            color: rgb(255, 255, 255);
+            transform: translateY(-2px);
+        }
+
+        .signup-button.active {
+            background-color: #a00d25;
+            color: white;
+            border-color: #a00d25;
+        }  
+
+
+input[type="submit"] {
+    padding: 10px 20px; /* Ensure padding matches */
+    align-items: center;
+    background-color: #C8102E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex-grow: 1; /* Ensure the button expands to fill available space */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #a00d25;
+    transform: translateY(-2px);
+}
+
+
+
+        @keyframes flipIn {
+            from {
+                opacity: 0;
+                transform: rotateY(90deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotateY(0);
+            }
+        }
+
+        @keyframes flipOut {
+            from {
+                opacity: 1;
+                transform: rotateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: rotateY(90deg);
+            }
+        }
+
+        .content form input[type="text"],
+        .content form input[type="password"],
+        .content form input[type="email"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            width: calc(100% - 22px); /* Adjust width for padding and border */
+            box-sizing: border-box;
+        }
+
+        .content form input[type="text"]:focus,
+        .content form input[type="password"]:focus,
+        .content form input[type="email"]:focus {
+            border-color: #C8102E;
+            box-shadow: 0 0 5px rgba(200, 16, 46, 0.5);
+            outline: none;
+        }
+
+        .content form input[type="submit"] {
+            padding: 10px;
+            background-color: #C8102E;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .content form input[type="submit"]:hover {
+            background-color: #a00d25;
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #C8102E;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: none;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .footer {
+            background-color: #222;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .footer .footer-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer .footer-info .contact-info,
+        .footer .footer-info .useful-links,
+        .footer .footer-info .working-hours {
+            flex: 1;
+            margin: 20px;
+        }
+
+        .footer .footer-info h4 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer .footer-info h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: #C8102E;
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer .footer-info p,
+        .footer .footer-info a {
+            font-size: 0.9em;
+            color: #ccc;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+        .footer .footer-info .social-links a {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+
+        .footer .logo img {
+            max-height: 80px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        .footer .footer-info .social-links img {
+            max-height: 30px;
+            width: auto;
+            vertical-align: middle;
+        }
+
+        .footer-bottom img {
+            max-height: 50px;
+            width: auto;
+            margin-top: 10px;
+        }
+
+        .useful-links a {
+            display: block;
+            opacity: 0; /* Initially hidden */
+            animation: fadeInUp 0.5s ease-out forwards; /* Apply animation */
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .useful-links a:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .useful-links a:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .useful-links a:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        .useful-links a:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+        .useful-links a:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="college-info">
+            <img src="Photo\MCE_logo.png" alt="College Logo" class="logo">
+            <div class="college-details">
+                <h1>Training and Placement Cell</h1>
+                <p>Malnad College of Engineering, Hassan</p>
+            </div>
+        </div>
+        <div class="accreditation-logos">
+            <img src="Photo\naac-logo.jpg" alt="NAAC Accredited">
+            <img src="Photo\aria-logo.png" alt="ARIA Accredited">
+            <img src="Photo\mhrd-logo.jpg" alt="MHRD Accredited">
+            <img src="Photo\iic-logo.jpg" alt="Institution's Innovation Council">
+            <img src="Photo\nirf-logo.png" alt="NIRF Accredited">
+            <img src="Photo\gs-gauge.png" alt="Gold Rated">
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Academics</a></li>
+            <li><a href="#">Examination</a></li>
+            <li><a href="login.html">Training and Placements</a></li>
+            <li><a href="#">Alumni</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <div class="tab-container">
+            <div class="tab active" data-target="login">Student Login</div>
+            <div class="tab" data-target="admin-login">Admin Login</div>
+        </div>
+        <div class="form-container login active">
+            <h2>Login Here</h2>
+            <form id="login-form" action="login-process.php" method="post">
+                <input type="text" name="usn" placeholder="USN" pattern="4MC[0-9]{2}[A-Za-z]{2}[0-9]{3}" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div class="button-container">
+                    <input type="submit" value="Login">
+                    <div class="tab signup-button" data-target="signup">Sign Up</div>
+                </div>
+                <div class="error-message" id="login-error-message">Invalid USN or Password</div>
+                <p><a href="#" id="forgot-password-link">Forgot Password?</a></p>
+            </form>
+        </div>
+
+        <div class="form-container forgot-password">
+            <h2>Reset Password</h2>
+            <form id="forgot-password-form" action="forgot-password-process.php" method="post">
+                <input type="text" name="usn" placeholder="USN" pattern="4MC[0-9]{2}[A-Za-z]{2}[0-9]{3}" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="phone" placeholder="Mobile Number" required>
+                <input type="submit" value="Reset Password">
+                <div class="error-message" id="forgot-password-error-message">Please fill all fields correctly</div>
+            </form>
+        </div>
+        
+        <div class="form-container signup">
+            <h2>Sign Up</h2>
+            <form id="signup-form" action="signup-process.php" method="post">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="usn" placeholder="USN" pattern="4MC[0-9]{2}[A-Za-z]{2}[0-9]{3}" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm-password" placeholder="Confirm Password" required>
+                <input type="submit" value="Sign Up">
+                <div class="error-message" id="signup-error-message">Please fill all fields correctly</div>
+            </form>
+        </div>
+        <div class="form-container admin-login">
+            <h2>Admin Login</h2>
+            <form id="admin-login-form" action="admin-login-process.php" method="post">
+                <input type="text" name="admin-username" placeholder="Admin Username" required>
+                <input type="password" name="admin-password" placeholder="Password" required>
+                <input type="submit" value="Login">
+                <div class="error-message" id="admin-login-error-message">Invalid Admin Username or Password</div>
+            </form>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-info">
+            <div class="contact-info">
+                <div class="logo">
+                    <img src="Photo\MCE_logo.png" alt="College Logo">
+                </div>
+                <p>No 21, Salagame Rd, Rangoli Halla, Hassan, Karnataka 573202</p>
+                <p>08172-245317</p>
+                <p><a href="mailto:office@mcehassan.ac.in">office@mcehassan.ac.in</a></p>
+                <div class="social-links">
+                    <a href="#"><img src="Photo\facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="Photo\twitter-icon.png" alt="Twitter"></a>
+                    <a href="#"><img src="Photo\instagram-icon.jpeg" alt="Instagram"></a>
+                    <a href="#"><img src="Photo\whatsapp-icon.jpg" alt="WhatsApp"></a>
+                    <a href="#"><img src="Photo\youtube-icon.png" alt="YouTube"></a>
+                    <a href="#"><img src="Photo\linkedin-icon.png" alt="LinkedIn"></a>
+                </div>
+            </div>
+            <div class="useful-links">
+                <h4>Useful Links</h4>
+                <a href="#">About Us</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Gallery</a>
+                <a href="#">Staff Mail Login</a>
+            </div>
+            <div class="working-hours">
+                <h4>Working Hours</h4>
+                <p>Mon - Fri : 09.30 am - 05.30 pm</p>
+                <p>Saturday : 09.30 am - 01.30 pm</p>
+                <p>Sunday : Closed</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Malnad College of Engineering. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = document.querySelector(`.form-container.${this.getAttribute('data-target')}`);
+
+                document.querySelectorAll('.form-container.active').forEach(activeForm => {
+                    activeForm.classList.remove('active');
+                    activeForm.style.animation = 'flipOut 0.5s ease forwards';
+                });
+
+                setTimeout(() => {
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.form-container').forEach(form => form.style.animation = '');
+
+                    this.classList.add('active');
+                    target.classList.add('active');
+                    target.style.animation = 'flipIn 0.5s ease forwards';
+                }, 500);
+            });
+        });
+
+        document.getElementById('forgot-password-link').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const loginForm = document.querySelector('.form-container.login');
+            const forgotPasswordForm = document.querySelector('.form-container.forgot-password');
+
+            loginForm.classList.remove('active');
+            loginForm.style.animation = 'flipOut 0.5s ease forwards';
+
+            setTimeout(() => {
+                forgotPasswordForm.classList.add('active');
+                forgotPasswordForm.style.animation = 'flipIn 0.5s ease forwards';
+            }, 500);
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const usn = document.querySelector('input[name="usn"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+            const errorMessage = document.getElementById('login-error-message');
+
+            if (usn !== '4MC123AB456' || password !== 'password123') { 
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+                alert('Login successful!');
+            }
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.querySelector('input[name="name"]').value;
+            const usn = document.querySelector('input[name="usn"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+            const confirmPassword = document.querySelector('input[name="confirm-password"]').value;
+            const errorMessage = document.getElementById('signup-error-message');
+
+            if (!name || !usn || !email || !password || password !== confirmPassword) {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+                alert('Sign Up successful!');
+            }
+        });
+
+        document.getElementById('admin-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const adminUsername = document.querySelector('input[name="admin-username"]').value;
+            const adminPassword = document.querySelector('input[name="admin-password"]').value;
+            const errorMessage = document.getElementById('admin-login-error-message');
+
+            if (adminUsername !== 'admin' || adminPassword !== 'admin123') { 
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+                alert('Admin Login successful!');
+            }
+        });
+
+        document.getElementById('forgot-password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const usn = document.querySelector('input[name="usn"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const phone = document.querySelector('input[name="phone"]').value;
+            const errorMessage = document.getElementById('forgot-password-error-message');
+
+            if (!usn || !email || !phone) {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+                alert('Password reset link sent to your email!');
+            }
+        });
+    </script>
+</body>
+</html>
